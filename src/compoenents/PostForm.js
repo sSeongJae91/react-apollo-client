@@ -33,7 +33,7 @@ function PostForm() {
 
     function createPostCallback() {
         createPost();
-    }
+    } 
 
     return (
         <>
