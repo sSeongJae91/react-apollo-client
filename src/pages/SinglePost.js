@@ -7,6 +7,7 @@ import moment from 'moment';
 import LikeButton from '../compoenents/LikeButton';
 import { AuthContext } from '../context/auth';
 import DeleteButton from '../compoenents/DeleteButton';
+import MyPopup from '../util/MyPopup';
 
 function SinglePost(props) {
 
@@ -60,18 +61,21 @@ function SinglePost(props) {
                             <hr/>
                             <Card.Content extra>
                                 <LikeButton user={user} post={{id, likeCount, likes}}/>
-                                <Button
-                                    as="div"
-                                    labelPosition="right"
-                                    onClick = {() => console.log('comment on post')}
-                                    >
-                                        <Button basic color="blue">
-                                            <Icon name="comments"/>
+                                <MyPopup 
+                                    content="comment on post">
+                                        <Button
+                                            as="div"
+                                            labelPosition="right"
+                                            onClick = {() => console.log('comment on post')}
+                                            >
+                                                <Button basic color="blue">
+                                                    <Icon name="comments"/>
+                                                </Button>
+                                                <Label basic color="blue" pointing="left">
+                                                    {commentCount}
+                                                </Label>
                                         </Button>
-                                        <Label basic color="blue" pointing="left">
-                                            {commentCount}
-                                        </Label>
-                                </Button>
+                                </MyPopup>
                                 {user && user.username === username && (
                                     <DeleteButton postId={id} callback={deletePostCallback}/>
                                 )}
